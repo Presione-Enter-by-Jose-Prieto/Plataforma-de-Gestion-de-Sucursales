@@ -16,6 +16,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [Acceso::class, 'logout'])->name('logout');
 
     // App
-    Route::view('/menu', 'app.menu')->name('menu');
+    Route::view('/inicio', 'app.inicio')->name('inicio');
 
 });

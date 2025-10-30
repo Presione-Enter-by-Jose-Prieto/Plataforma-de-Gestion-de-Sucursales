@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('document')->unique();
-            $table->enum('role', ['admin', 'empleado', 'supervisor', 'encargado'])->default('empleado');
+            $table->enum('role', ['admin', 'gerente', 'supervisor', 'cajero', 'cocinero'])->default('admin');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -39,7 +39,7 @@ return new class extends Migration
         });
 
         DB::table('users')->insert([
-            'name' => 'Administrador',
+            'name' => 'José Alejandro Prieto Salcedo',
             'document' => '00000001',
             'role' => 'admin',
             'password' => Hash::make('admin123'),

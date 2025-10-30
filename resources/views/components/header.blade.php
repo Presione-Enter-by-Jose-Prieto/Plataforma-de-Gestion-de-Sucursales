@@ -6,7 +6,7 @@
         @if (Auth::user()->role === 'admin')
             <ul class="nav !gap-[18px]">
                 <li>
-                    <a href="" class="flex items-center gap-1">
+                    <a href="{{ route('inicio') }}" class="flex items-center gap-1">
                         <span class="material-symbols-outlined icon-xs" style="">home</span>
                         Inicio
                     </a>
@@ -36,8 +36,102 @@
                     </a>
                 </li>
             </ul>
-        @elseif (Auth::user()->role === '')
-            
+        @elseif (Auth::user()->role === 'gerente')
+            <ul class="nav !gap-[18px]">
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ventas diarias, pedidos activos, empleados">
+                        <span class="material-symbols-outlined icon-xs" style="">home</span>
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ver, editar y controlar pedidos de su sucursal">
+                        <span class="material-symbols-outlined icon-xs">receipt_long</span>
+                        Pedidos
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Registrar, editar y asignar roles locales">
+                        <span class="material-symbols-outlined icon-xs" style="">badge</span>
+                        Empleados
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Modificar precios o disponibilidad del menú local">
+                        <span class="material-symbols-outlined icon-xs" style="">fastfood</span>
+                        Menú
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ventas de la sucursal, desempeño del personal">
+                        <span class="material-symbols-outlined icon-xs">data_usage</span>
+                        Reportes
+                    </a>
+                </li>
+            </ul>
+        @elseif (Auth::user()->role === 'supervisor')
+            <ul class="nav !gap-[18px]">
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Resumen operativo">
+                        <span class="material-symbols-outlined icon-xs" style="">home</span>
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ver estado de pedidos">
+                        <span class="material-symbols-outlined icon-xs">receipt_long</span>
+                        Pedidos
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ver lista y desempeño, sin editar">
+                        <span class="material-symbols-outlined icon-xs" style="">badge</span>
+                        Empleados
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ventas y métricas operativas">
+                        <span class="material-symbols-outlined icon-xs">data_usage</span>
+                        Reportes
+                    </a>
+                </li>
+            </ul>
+        @elseif (Auth::user()->role === 'cajero')
+            <ul class="nav !gap-[18px]">
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Crear nuevos pedidos">
+                        <span class="material-symbols-outlined icon-xs" style="">home</span>
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ver pedidos en curso y su estado">
+                        <span class="material-symbols-outlined icon-xs">receipt_long</span>
+                        Pedidos
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ventas pasadas y totales">
+                        <span class="material-symbols-outlined icon-xs">history</span>
+                        Historial
+                    </a>
+                </li>
+            </ul>
+        @elseif (Auth::user()->role === 'cocinero')
+            <ul class="nav !gap-[18px]">
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Ver pedidos por preparar">
+                        <span class="material-symbols-outlined icon-xs">receipt_long</span>
+                        Pedidos pendientes
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex items-center gap-1" title="Marcar pedidos completados">
+                        <span class="material-symbols-outlined icon-xs">check_circle</span>
+                        Pedidos listos
+                    </a>
+                </li>
+            </ul>
         @endif
 
         <div class="dropdown">
@@ -56,6 +150,14 @@
             <span>
                 @if (Auth::user()->role === 'admin')
                     Administrador general
+                @elseif (Auth::user()->role === 'gerente')
+                    Gerente de sucursal(es)
+                @elseif (Auth::user()->role === 'supervisor')
+                    Supervisor de sucursal(es)
+                @elseif (Auth::user()->role === 'cajero')
+                    Cajero
+                @elseif (Auth::user()->role === 'cocinero')
+                    Cocinero
                 @endif
             </span>
         </div>

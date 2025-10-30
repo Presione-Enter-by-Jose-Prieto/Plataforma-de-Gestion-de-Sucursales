@@ -10,6 +10,13 @@
     
     {{-- Estilos adicionales --}}
     @stack('styles')
+
+    <style>
+        body {
+            color: #333333;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
 </head>
 <body class="min-h-screen bg-[#df1537] flex flex-row justify-center items-center">
 

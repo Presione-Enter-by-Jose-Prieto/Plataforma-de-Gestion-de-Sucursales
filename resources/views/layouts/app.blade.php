@@ -11,16 +11,22 @@
     {{-- Estilos adicionales --}}
     @stack('styles')
 
+    <style>
+        body {
+            color: #333333;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
 </head>
 <body class="">
     {{-- Linea de color distintiva del color del negocio --}}
     <div class="h-3.5 bg-[#df1537] mx-4 box-content rounded-b"></div>
     {{-- Header --}}
-    <header class="mt-3 mb-6 ml-4 mr-4">
+    <header class="mt-3 mb-3 ml-4 mr-4">
         <x-header/>
     </header>
     {{-- Contenido principal --}}
-    <main class="px-5">
+    <main class="mx-4">
         @yield('content')
     </main>
 
