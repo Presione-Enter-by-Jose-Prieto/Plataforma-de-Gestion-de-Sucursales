@@ -38,6 +38,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('document')->unique();
+            $table->string('email')->unique()->nullable();
+            $table->string('direction')->nullable();
+            $table->date('birth_date')->nullable(); 
             $table->string('password');
             $table->foreignId('role_id')->constrained('roles')->onDelete('restrict');
             $table->foreignId('sucursal_id')->nullable()->constrained('sucursales')->onDelete('set null');
@@ -65,6 +68,9 @@ return new class extends Migration
         DB::table('users')->insert([
             'name' => 'José Alejandro Prieto Salcedo',
             'document' => '00000001',
+            'email' => 'admin@admin.com',
+            'direction'=> 'Calle Falsa 123, Ciudad Ejemplo',
+            'birth_date' => '2007-10-20',
             'password' => Hash::make('admin123'),
             'role_id' => $adminRoleId,
             'created_at' => now(),
