@@ -3,7 +3,7 @@
 
 <div class="navbar-inner">
     <div class="container">
-        @if (Auth::user()->hasRole('admin'))
+        @if (Auth::user()->hasRole('Administrador General'))
             <ul class="nav !gap-[18px]">
                 <li>
                     <a href="{{ route('inicio') }}" class="flex items-center gap-1 {{ request()->routeIs('inicio') ? 'active-link' : '' }}">
@@ -36,7 +36,7 @@
                     </a>
                 </li>
             </ul>
-        @elseif (Auth::user()->hasRole('gerente'))
+        @elseif (Auth::user()->hasRole('Gerente'))
             <ul class="nav !gap-[18px]">
                 <li>
                     <a href="{{ route('inicio') }}" class="flex items-center gap-1 {{ request()->routeIs('inicio') ? 'active-link' : '' }}" title="Ventas diarias, pedidos activos, empleados">
@@ -69,7 +69,7 @@
                     </a>
                 </li>
             </ul>
-        @elseif (Auth::user()->hasRole('supervisor'))
+        @elseif (Auth::user()->hasRole('Supervisor'))
             <ul class="nav !gap-[18px]">
                 <li>
                     <a href="{{ route('inicio') }}" class="flex items-center gap-1 {{ request()->routeIs('inicio') ? 'active-link' : '' }}" title="Resumen operativo">
@@ -96,7 +96,7 @@
                     </a>
                 </li>
             </ul>
-        @elseif (Auth::user()->hasRole('cajero'))
+        @elseif (Auth::user()->hasRole('Cajero'))
             <ul class="nav !gap-[18px]">
                 <li>
                     <a href="{{ route('inicio') }}" class="flex items-center gap-1 {{ request()->routeIs('inicio') ? 'active-link' : '' }}" title="Crear nuevos pedidos">
@@ -117,7 +117,7 @@
                     </a>
                 </li>
             </ul>
-        @elseif (Auth::user()->hasRole('cocinero'))
+        @elseif (Auth::user()->hasRole('Cocinero'))
             <ul class="nav !gap-[18px]">
                 <li>
                     <a href="" class="flex items-center gap-1" title="Ver pedidos por preparar">
@@ -148,15 +148,15 @@
     <li>
         <div class="user-info-compact">
             <span>
-                @if (Auth::user()->hasRole('admin'))
+                @if (Auth::user()->hasRole('Administrador General'))
                     Administrador general
-                @elseif (Auth::user()->hasRole('gerente'))
+                @elseif (Auth::user()->hasRole('Gerente'))
                     Gerente de sucursal(es)
-                @elseif (Auth::user()->hasRole('supervisor'))
+                @elseif (Auth::user()->hasRole('Supervisor'))
                     Supervisor de sucursal(es)
-                @elseif (Auth::user()->hasRole('cajero'))
+                @elseif (Auth::user()->hasRole('Cajero'))
                     Cajero
-                @elseif (Auth::user()->hasRole('cocinero'))
+                @elseif (Auth::user()->hasRole('Cocinero'))
                     Cocinero
                 @endif
             </span>

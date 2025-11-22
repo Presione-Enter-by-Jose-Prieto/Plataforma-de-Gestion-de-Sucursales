@@ -5,45 +5,60 @@
 
 @section('content')
     <x-contenedor-info>
-        <x-titulo-h2>Empleados de {{ $sucursal->nombre }}</x-titulo-h2>
+        <x-titulo-h2>Empleados de la {{ $sucursal->nombre }}</x-titulo-h2>
         <x-parrafo class="!mb-0">Dirección: {{ $sucursal->direccion }}</x-parrafo>
-        <x-parrafo class="!mb-0">Teléfono: {{ $sucursal->telefono }}</x-parrafo>
+        <x-parrafo class="!mb-3">Teléfono: {{ $sucursal->telefono }}</x-parrafo>
+        <div class="w-full h-px bg-gray-300"></div>
+        <div class="flex gap-3 mt-3">
+            <x-boton-azul href="">
+                Añadir un empleado nuevo
+            </x-boton-azul>
+            <x-boton-naranja href="">
+                Transferir un empleado
+            </x-boton-naranja>
+        </div>
     </x-contenedor-info>
 
-    <div class="mt-2">
+    <div class="mt-3">
         @if($empleados->count())
-            <div class="w-full mb-4 max-w-full border border-[#dddddd] rounded-sm overflow-hidden">
-                <div class="m-4 border border-[#dddddd] rounded-sm">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="px-1 py-1 border-b border-[#dddddd] bg-[#F5F5F5]">
-                                <th class="px-2 py-1 text-start">Nombre</th>
-                                <th class="px-2 py-1 text-start border-l border-[#dddddd]">Documento</th>
-                                <th class="px-2 py-1 text-start border-l border-[#dddddd]">Email</th>
-                                <th class="px-2 py-1 text-start border-l border-[#dddddd]">Dirección</th>
-                                <th class="px-2 py-1 text-start border-l border-[#dddddd]">Fecha de nacimiento</th>
-                                <th class="px-2 py-1 text-start border-l border-[#dddddd]">Edad</th>
-                                <th class="px-2 py-1 text-start border-l border-[#dddddd]">Rol</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($empleados as $empleado)
-                                <tr class="{{ $loop->odd ? 'bg-white' : 'bg-[#f9f9f9]' }} text-start">
-                                    <td class="px-2">{{ $empleado->name }}</td>
-                                    <td class="px-2 border-l py-1 border-[#dddddd]">{{ $empleado->document }}</td>
-                                    <td class="px-2 border-l py-1 border-[#dddddd]">{{ $empleado->email}}</td>
-                                    <td class="px-2 border-l py-1 border-[#dddddd]">{{ $empleado->direction}}</td>
-                                    <td class="px-2 border-l py-1 border-[#dddddd]">{{ $empleado->birth_date }}</td>
-                                    <td class="px-2 border-l py-1 border-[#dddddd]">
-                                        {{ \Carbon\Carbon::parse($empleado->birth_date)->age }} años
-                                    </td>
-                                    <td class="px-2 border-l border-[#dddddd]">{{ $empleado->role ? $empleado->role->nombre : 'Sin rol' }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                @foreach ($empleados as $empleado)
+                    <x-contenedor-info>
+                        <div class="border-b border-[#ddd] pb-2 mb-2 flex items-center gap-3">
+                            <div class="rounded-full w-10 h-10 overflow-hidden flex items-center justify-center bg-gray-200">
+                                <img src="{{ $empleado->foto ? asset('storage/' . $empleado->foto) : asset('images/default-user.jpeg') }}"
+                                     alt="Foto de {{ $empleado->name }}" class="object-cover w-10 h-10" />
+                            </div>
+                            <h3 class="text-base font-semibold">{{ $empleado->name }}</h3>
+                        </div>
+                        <div class="text-sm grid grid-cols-2 gap-x-4 gap-y-1">
+                            <div>
+                                <span class="font-medium text-gray-700">Documento:</span>
+                                <span class="text-gray-600">{{ $empleado->document }}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-700">Email:</span>
+                                <span class="text-gray-600">{{ $empleado->email }}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-700">Dirección:</span>
+                                <span class="text-gray-600">{{ $empleado->direction }}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-700">Edad:</span>
+                                <span class="text-gray-600">{{ \Carbon\Carbon::parse($empleado->birth_date)->age }} años</span>
+                            </div>
+                        </div>
+                        <div class="pt-5 mt-2 border-t border-[#ddd] flex flex-row justify-between">
+                            <div>
+                                <span class="text-sm text-gray-600">{{ $empleado->role ? $empleado->role->nombre : 'Sin rol' }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <x-boton-gris>Ver perfil</x-boton-gris>
+                            </div>
+                        </div>
+                    </x-contenedor-info>
+                @endforeach
             </div>
         @else
             <x-parrafo class="flex items-center justify-center">No hay empleados registrados en esta sucursal.</x-parrafo>
